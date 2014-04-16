@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="requestFilter" class="com.undancer.breath.core.RequestFilter"/>
+
+    <bean id="characterEncodingFilter" class="org.springframework.web.filter.CharacterEncodingFilter"/>
+
+    <bean id="hiddenHttpMethodFilter" class="org.springframework.web.filter.HiddenHttpMethodFilter"/>
+    <bean id="shallowEtagHeaderFilter" class="org.springframework.web.filter.ShallowEtagHeaderFilter"/>
+</beans>
