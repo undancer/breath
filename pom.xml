@@ -40,8 +40,9 @@
 
     <modules>
         <module>modules/core</module>
-        <module>samples/showcase</module>
         <module>modules/json</module>
+        <module>modules/security</module>
+        <module>samples/showcase</module>
     </modules>
 
     <dependencyManagement>
@@ -103,6 +104,17 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.3.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-web</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>1.2.3</version>
             </dependency>
 
             <dependency>

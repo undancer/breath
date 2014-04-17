@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="filters">
+            <map>
+                <entry key="client" value-ref="clientFilter"/>
+            </map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /inside/** = authcBasic
+                /user/** = user
+                /client/** = client
+            </value>
+        </property>
+        <property name="loginUrl" value="/login"/>
+    </bean>
+
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--<property name="sessionManager" ref="sessionManager"/>-->
+        <property name="subjectDAO">
+            <bean class="org.apache.shiro.mgt.DefaultSubjectDAO">
+                <property name="sessionStorageEvaluator">
+                    <bean class="org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator">
+                        <property name="sessionStorageEnabled" value="false"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+        <property name="realms">
+            <set>
+                <bean class="com.undancer.breath.samples.showcase.security.client.ClientRealm" init-method="init">
+
+                </bean>
+                <bean class="org.apache.shiro.realm.text.PropertiesRealm" init-method="init">
+                    <property name="credentialsMatcher">
+                        <bean class="org.apache.shiro.authc.credential.PasswordMatcher">
+                            <property name="passwordService" ref="passwordService"/>
+                        </bean>
+                    </property>
+                    <property name="resourcePath" value="classpath:users.properties"/>
+                    <property name="reloadIntervalSeconds" value="5"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+</beans>
