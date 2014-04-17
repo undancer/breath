@@ -17,6 +17,7 @@
 
     <properties>
         <java.version>1.7</java.version>
+        <groovy.version>2.2.2</groovy.version>
         <http.path>/</http.path>
         <http.port>8080</http.port>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,6 +27,7 @@
         <maven.tomcat.path>${http.path}</maven.tomcat.path>
         <maven.tomcat.port>${http.port}</maven.tomcat.port>
         <maven.tomcat.uriEncoding>${project.build.sourceEncoding}</maven.tomcat.uriEncoding>
+        <gmaven.version>1.5</gmaven.version>
         <spring.version>4.0.3.RELEASE</spring.version>
         <jackson.version>2.3.2</jackson.version>
         <tomcat.version>7.0.53</tomcat.version>
@@ -43,6 +45,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>0.7-groovy-2.0</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-servlet-api</artifactId>
@@ -97,12 +104,47 @@
                 <version>16.0.1</version>
             </dependency>
 
-
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>${gmaven.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.gmaven.runtime</groupId>
+                        <artifactId>gmaven-runtime-2.0</artifactId>
+                        <version>${gmaven.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-all</artifactId>
+                        <version>${groovy.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <source/>
+                    <providerSelection>2.0</providerSelection>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generateStubs</goal>
+                            <goal>generateTestStubs</goal>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
