@@ -44,6 +44,7 @@
         <module>modules/cache</module>
         <module>modules/security</module>
         <module>samples/showcase</module>
+        <module>samples/jms</module>
     </modules>
 
     <dependencyManagement>
