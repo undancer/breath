@@ -41,6 +41,7 @@
     <modules>
         <module>modules/core</module>
         <module>modules/json</module>
+        <module>modules/cache</module>
         <module>samples/showcase</module>
     </modules>
 
