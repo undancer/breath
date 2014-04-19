@@ -10,7 +10,7 @@
     <!--<logger name="com.undancer.breath.core" level="DEBUG"/>-->
 
     <root>
-        <level value="INFO"/>
+        <level value="TRACE"/>
         <appender-ref ref="CONSOLE"/>
     </root>
 

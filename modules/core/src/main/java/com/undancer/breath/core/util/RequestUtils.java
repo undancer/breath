@@ -28,10 +28,6 @@ public class RequestUtils implements ApplicationContextAware {
         }
     }
 
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        RequestUtils.applicationContext = applicationContext;
-    }
-
     public static String contextRelative(String uri, boolean contextRelative) {
         if (uri != null && uri.startsWith("/")) {
             String contextPath = getRequest().getContextPath();
@@ -41,5 +37,9 @@ public class RequestUtils implements ApplicationContextAware {
             }
         }
         return uri;
+    }
+
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        RequestUtils.applicationContext = applicationContext;
     }
 }

@@ -3,6 +3,6 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="org.springside.modules.test.cache.memcached.MemcachedSimulator"/>
+    <import resource="classpath:META-INF/spring/shiro-config-support.xml"/>
 
 </beans>
