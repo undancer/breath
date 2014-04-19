@@ -40,8 +40,8 @@
 
     <modules>
         <module>modules/core</module>
-        <module>samples/showcase</module>
         <module>modules/json</module>
+        <module>samples/showcase</module>
     </modules>
 
     <dependencyManagement>
