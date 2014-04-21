@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -26,6 +27,10 @@ public class RequestUtils implements ApplicationContextAware {
         } catch (ServletRequestBindingException e) {
             return null;
         }
+    }
+
+    public static ServletContext getServletContext() {
+        return getRequest().getServletContext();
     }
 
     public static String contextRelative(String uri, boolean contextRelative) {
