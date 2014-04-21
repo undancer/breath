@@ -1,6 +1,5 @@
 package com.undancer.breath.core.spring;
 
-import com.google.common.collect.Lists;
 import com.undancer.breath.core.util.ReflectionUtils;
 import com.undancer.breath.core.util.RequestUtils;
 import com.undancer.breath.core.util.ResourceUtils;
@@ -32,7 +31,6 @@ public class ViewNameTranslator extends DefaultRequestToViewNameTranslator {
         LOGGER.debug("viewNameTranslator: uri -> {}", uri);
 
         List<UrlBasedViewResolver> viewResolvers = ResourceUtils.getResources(UrlBasedViewResolver.class);
-        System.err.println(viewResolvers);
         for (UrlBasedViewResolver viewResolver : viewResolvers) {
             String prefix = ReflectionUtils.<String>getPrivateField(viewResolver, "prefix").replaceAll("^/", "");
             String suffix = ReflectionUtils.getPrivateField(viewResolver, "suffix");
@@ -48,14 +46,17 @@ public class ViewNameTranslator extends DefaultRequestToViewNameTranslator {
 
     public String findViewName(String prefix, String path, String suffix, boolean greedy) {
         try {
-            for (String lookupPath : Lists.newArrayList(path, path + INDEX)) {
-                URL uri = RequestUtils.getServletContext().getResource(prefix + transformPath(lookupPath) + suffix);
-                if (uri != null) {
-                    return lookupPath;
-                }
-                uri = ResourceUtils.getClassPathResource(prefix + transformPath(lookupPath) + suffix);
-                if (uri != null) {
-                    return lookupPath;
+            for (String lookupPath : new String[]{path, path + INDEX}) {
+                lookupPath = transformPath(lookupPath);
+                if (lookupPath != null && lookupPath.length() > 0) {
+                    URL uri = RequestUtils.getServletContext().getResource(prefix + lookupPath + suffix);
+                    if (uri != null) {
+                        return lookupPath;
+                    }
+                    uri = ResourceUtils.getClassPathResource(prefix + lookupPath + suffix);
+                    if (uri != null) {
+                        return lookupPath;
+                    }
                 }
             }
         } catch (Exception e) {
