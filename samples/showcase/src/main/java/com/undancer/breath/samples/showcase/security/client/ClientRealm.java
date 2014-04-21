@@ -1,8 +1,8 @@
 package com.undancer.breath.samples.showcase.security.client;
 
 import com.google.common.collect.Maps;
-import com.undancer.breath.samples.showcase.security.User;
-import com.undancer.breath.samples.showcase.security.UserService;
+import com.undancer.breath.samples.showcase.security.service.UserService;
+import com.undancer.breath.samples.showcase.security.token.User;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

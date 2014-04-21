@@ -1,4 +1,6 @@
-package com.undancer.breath.samples.showcase.security;
+package com.undancer.breath.samples.showcase.security.service;
+
+import com.undancer.breath.samples.showcase.security.token.User;
 
 /**
  * Created by undancer on 14-4-21.
