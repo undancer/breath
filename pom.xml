@@ -40,12 +40,20 @@
 
     <modules>
         <module>modules/core</module>
-        <module>samples/showcase</module>
         <module>modules/json</module>
+        <module>modules/cache</module>
+        <module>modules/security</module>
+        <module>samples/showcase</module>
+        <module>samples/jms</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+            </dependency>
             <dependency>
                 <groupId>org.spockframework</groupId>
                 <artifactId>spock-core</artifactId>
@@ -106,9 +114,26 @@
             </dependency>
 
             <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-web</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>16.0.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thimbleware.jmemcached</groupId>
+                <artifactId>jmemcached-core</artifactId>
+                <version>1.0.0</version>
             </dependency>
 
             <dependency>
@@ -120,6 +145,21 @@
             <dependency>
                 <groupId>com.github.undancer</groupId>
                 <artifactId>breath-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.undancer</groupId>
+                <artifactId>breath-json</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.undancer</groupId>
+                <artifactId>breath-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.undancer</groupId>
+                <artifactId>breath-cache</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
@@ -195,5 +235,32 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>local private nexus</name>
+            <url>http://maven.oschina.net/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus</id>
+            <name>local private nexus</name>
+            <url>http://maven.oschina.net/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

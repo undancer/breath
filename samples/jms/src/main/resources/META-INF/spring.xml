@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <constructor-arg ref="connectionFactory"/>
+    </bean>
+
+    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory">
+            <bean class="org.apache.activemq.spring.ActiveMQConnectionFactoryFactoryBean">
+                <property name="tcpHostAndPorts">
+                    <list>
+                        <value>tcp://localhost:61616</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="sessionCacheSize" value="10"/>
+        <property name="cacheProducers" value="false"/>
+    </bean>
+
+
+</beans>
