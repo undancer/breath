@@ -12,10 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Named;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 import static org.apache.commons.lang3.ArrayUtils.toArray;
 import static org.apache.shiro.web.util.WebUtils.toHttp;
@@ -56,20 +56,24 @@ public class ClientFilter extends AuthenticatingFilter {
     }
 
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {
-        Throwable throwable = e.getCause();
-        if (throwable instanceof OAuthProblemException) {
-            OAuthProblemException problem = (OAuthProblemException) throwable;
-            try {
-                HttpServletResponse httpServletResponse = toHttp(response);
-                OAuthResponse oAuthResponse = OAuthResponse.errorResponse(401).error(problem).buildJSONMessage();
-
-                httpServletResponse.setStatus(oAuthResponse.getResponseStatus());
-                try (ServletOutputStream out = httpServletResponse.getOutputStream()) {
-                    out.println(oAuthResponse.getBody());
-                }
-            } catch (Exception other) {
-                other.printStackTrace();
+        try {
+            HttpServletResponse httpServletResponse = toHttp(response);
+            OAuthResponse.OAuthErrorResponseBuilder builder = OAuthResponse.errorResponse(401);
+            if (e.getCause() != null && e.getCause() instanceof OAuthProblemException) {
+                builder.error((OAuthProblemException) e.getCause()).buildJSONMessage();
+            } else {
+                builder.setError(e.getLocalizedMessage());
             }
+            OAuthResponse oAuthResponse = builder.buildJSONMessage();
+
+            httpServletResponse.setStatus(oAuthResponse.getResponseStatus());
+            httpServletResponse.setContentType("application/json; charset=UTF-8");
+            httpServletResponse.setCharacterEncoding("UTF-8");
+
+            try (PrintWriter out = httpServletResponse.getWriter()) {
+                out.println(oAuthResponse.getBody());
+            }
+        } catch (Exception other) {
         }
         return false;
     }
