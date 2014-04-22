@@ -51,6 +51,7 @@
         <module>modules/security</module>
         <module>samples/showcase</module>
         <module>samples/jms</module>
+        <module>samples/blank</module>
     </modules>
 
     <dependencyManagement>
