@@ -12,5 +12,10 @@
 </head>
 <body>
 <%= request.getRequestURI()%>
+<form method="POST">
+    <input name="username" type="text" value="admin"/>
+    <input name="password" type="text" value="admin"/>
+    <button type="submit"/>
+</form>
 </body>
 </html>

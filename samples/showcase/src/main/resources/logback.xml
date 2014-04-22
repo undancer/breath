@@ -8,6 +8,7 @@
 
     <!--<logger name="org.springframework" level="INFO"/>-->
     <logger name="com.undancer.breath.core.filter.RequestFilter" level="DEBUG"/>
+    <logger name="druid" level="DEBUG"/>
 
     <root>
         <level value="INFO"/>

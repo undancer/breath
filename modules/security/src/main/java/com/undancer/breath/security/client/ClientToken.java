@@ -1,4 +1,4 @@
-package com.undancer.breath.samples.showcase.security.client;
+package com.undancer.breath.security.client;
 
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.HostAuthenticationToken;

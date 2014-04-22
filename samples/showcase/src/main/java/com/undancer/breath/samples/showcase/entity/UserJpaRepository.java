@@ -1,6 +1,5 @@
 package com.undancer.breath.samples.showcase.entity;
 
-import com.undancer.breath.samples.showcase.security.token.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserJpaRepository extends JpaRepository<UserEntity, Long> {
 
-    public User findOneByAccessToken(String accessToken);
+    public UserEntity findOneByUsername(String username);
+
+    public UserEntity findOneByAccessToken(String accessToken);
 
 }

@@ -1,8 +1,8 @@
-package com.undancer.breath.samples.showcase.security.client;
+package com.undancer.breath.security.client;
 
 import com.google.common.collect.Maps;
-import com.undancer.breath.samples.showcase.security.service.UserService;
-import com.undancer.breath.samples.showcase.security.token.User;
+import com.undancer.breath.security.entity.User;
+import com.undancer.breath.security.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -14,6 +14,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.util.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,6 +28,8 @@ import java.util.Map;
 @Named
 public class ClientRealm extends AuthorizingRealm {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClientRealm.class);
+
     @Inject
     UserService userService;
 
@@ -34,16 +38,17 @@ public class ClientRealm extends AuthorizingRealm {
     }
 
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.err.println("doGetAuthorizationInfo");
-
-        AuthorizationInfo info = new SimpleAuthorizationInfo();
+        LOGGER.debug("获取用户[{}]的权限", principals.oneByType(String.class));
+        User user = principals.oneByType(User.class);
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.addRoles(userService.getRolesByUser(user));
+        info.addStringPermissions(userService.getRolesByUser(user));
+        info.addStringPermissions(userService.getPermsByUser(user));
         return info;
-//    throw new
     }
 
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.err.println("doGetAuthenticationInfo");
-
+        LOGGER.debug("获取token对应的用户信息");
         if (token == null || !(token instanceof ClientToken)) {
             return null;
         }

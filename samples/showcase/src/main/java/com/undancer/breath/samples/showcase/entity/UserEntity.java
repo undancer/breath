@@ -1,6 +1,6 @@
 package com.undancer.breath.samples.showcase.entity;
 
-import com.undancer.breath.samples.showcase.security.token.User;
+import com.undancer.breath.security.entity.User;
 
 import javax.persistence.*;
 
@@ -16,6 +16,8 @@ public class UserEntity implements User {
     private Long id;
     @Column(unique = true)
     private String username;
+
+    private String password;
 
     @Column(name = "access_token", nullable = true, unique = true)
     private String accessToken;
@@ -42,5 +44,13 @@ public class UserEntity implements User {
 
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

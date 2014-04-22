@@ -14,6 +14,8 @@
             <value>
                 /inside/** = authcBasic
                 /user/** = user
+                /client/teacher/** = client,perms[user,teacher]
+                /client/student/** = client,perms[user,student]
                 /client/** = client
             </value>
         </property>
@@ -22,31 +24,16 @@
 
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <!--<property name="sessionManager" ref="sessionManager"/>-->
-        <property name="subjectDAO">
-            <bean class="org.apache.shiro.mgt.DefaultSubjectDAO">
-                <property name="sessionStorageEvaluator">
-                    <bean class="org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator">
-                        <property name="sessionStorageEnabled" value="false"/>
-                    </bean>
-                </property>
+        <property name="subjectDAO" ref="subjectDAO"/>
+        <property name="realm" ref="clientRealm"/>
+    </bean>
+
+    <bean id="subjectDAO" class="org.apache.shiro.mgt.DefaultSubjectDAO">
+        <property name="sessionStorageEvaluator">
+            <bean class="org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator">
+                <property name="sessionStorageEnabled" value="false"/>
             </bean>
         </property>
-        <property name="realms">
-            <set>
-                <bean class="com.undancer.breath.samples.showcase.security.client.ClientRealm" init-method="init">
-
-                </bean>
-                <bean class="org.apache.shiro.realm.text.PropertiesRealm" init-method="init">
-                    <property name="credentialsMatcher">
-                        <bean class="org.apache.shiro.authc.credential.PasswordMatcher">
-                            <property name="passwordService" ref="passwordService"/>
-                        </bean>
-                    </property>
-                    <property name="resourcePath" value="classpath:users.properties"/>
-                    <property name="reloadIntervalSeconds" value="5"/>
-                </bean>
-            </set>
-        </property>
     </bean>
+
 </beans>

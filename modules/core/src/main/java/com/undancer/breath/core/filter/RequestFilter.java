@@ -27,6 +27,7 @@ public class RequestFilter extends OncePerRequestFilter {
     }
 
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+
         Stopwatch timer = null;
         String url = null, method = null;
 

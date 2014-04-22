@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
 
-    <import resource="classpath*:META-INF/spring/filter-config.xml"/>
-    <import resource="classpath:META-INF/spring/shiro-config-support.xml"/>
+    <bean id="clientFilter" class="com.undancer.breath.security.client.ClientFilter"/>
 
 </beans>
