@@ -261,6 +261,11 @@
                         <artifactId>tomcat-embed-core</artifactId>
                         <version>${tomcat.version}</version>
                     </dependency>
+                    <dependency>
+                        <groupId>org.apache.tomcat.embed</groupId>
+                        <artifactId>tomcat-embed-logging-log4j</artifactId>
+                        <version>${tomcat.version}</version>
+                    </dependency>
                 </dependencies>
                 <configuration>
                     <contextFile>src/main/conf/context.xml</contextFile>
