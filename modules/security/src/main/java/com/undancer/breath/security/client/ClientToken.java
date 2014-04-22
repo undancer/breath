@@ -1,5 +1,6 @@
 package com.undancer.breath.security.client;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.HostAuthenticationToken;
 
@@ -51,5 +52,9 @@ public class ClientToken implements AuthenticationToken, HostAuthenticationToken
 
     public Object getCredentials() {
         return accessToken;
+    }
+
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

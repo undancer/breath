@@ -1,8 +1,8 @@
 package com.undancer.breath.security.client;
 
 import com.google.common.collect.Maps;
-import com.undancer.breath.security.entity.User;
-import com.undancer.breath.security.service.UserService;
+import com.undancer.breath.security.userdetails.UserDetails;
+import com.undancer.breath.security.userdetails.UserDetailsService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -31,7 +31,7 @@ public class ClientRealm extends AuthorizingRealm {
     private static final Logger LOGGER = LoggerFactory.getLogger(ClientRealm.class);
 
     @Inject
-    UserService userService;
+    UserDetailsService userDetailsService;
 
     public ClientRealm() {
         setAuthenticationTokenClass(ClientToken.class);
@@ -39,11 +39,11 @@ public class ClientRealm extends AuthorizingRealm {
 
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         LOGGER.debug("获取用户[{}]的权限", principals.oneByType(String.class));
-        User user = principals.oneByType(User.class);
+        UserDetails user = principals.oneByType(UserDetails.class);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        info.addRoles(userService.getRolesByUser(user));
-        info.addStringPermissions(userService.getRolesByUser(user));
-        info.addStringPermissions(userService.getPermsByUser(user));
+        info.addRoles(userDetailsService.getRolesByUser(user));
+        info.addStringPermissions(userDetailsService.getRolesByUser(user));
+        info.addStringPermissions(userDetailsService.getPermsByUser(user));
         return info;
     }
 
@@ -58,7 +58,7 @@ public class ClientRealm extends AuthorizingRealm {
             return null;
         }
 
-        User user = userService.loadUserByAccessToken(accessToken);
+        UserDetails user = userDetailsService.loadUserByAccessToken(accessToken);
         if (user != null) {
             Long userId = user.getId();
             String username = user.getUsername();

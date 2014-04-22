@@ -7,4 +7,6 @@
     <import resource="classpath*:META-INF/spring/filter-config.xml"/>
     <import resource="classpath:META-INF/spring/shiro-config-support.xml"/>
 
+    <!--<context:component-scan base-package="com.undancer.breath.security"/>-->
+
 </beans>

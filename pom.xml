@@ -52,6 +52,7 @@
         <module>samples/showcase</module>
         <module>samples/jms</module>
         <module>samples/blank</module>
+        <module>samples/security</module>
     </modules>
 
     <dependencyManagement>
@@ -183,6 +184,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.3</version>
             </dependency>
 
             <dependency>

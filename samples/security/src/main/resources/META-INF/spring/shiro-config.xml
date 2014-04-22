@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="filters">
+            <map>
+                <entry key="client" value-ref="clientFilter"/>
+            </map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /inside/** = authcBasic
+                /user/** = user
+                /client/teacher/** = client,perms[user,teacher]
+                /client/student/** = client,perms[user,student]
+                /client/** = client
+            </value>
+        </property>
+        <property name="loginUrl" value="/login"/>
+    </bean>
+
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="subjectDAO" ref="subjectDAO"/>
+        <property name="realm" ref="clientRealm"/>
+    </bean>
+
+    <bean id="subjectDAO" class="org.apache.shiro.mgt.DefaultSubjectDAO">
+        <property name="sessionStorageEvaluator">
+            <bean class="org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator">
+                <property name="sessionStorageEnabled" value="false"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

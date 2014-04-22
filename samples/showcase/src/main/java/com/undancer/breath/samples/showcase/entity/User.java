@@ -1,6 +1,6 @@
 package com.undancer.breath.samples.showcase.entity;
 
-import com.undancer.breath.security.entity.User;
+import com.undancer.breath.security.userdetails.UserDetails;
 
 import javax.persistence.*;
 
@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "user")
-public class UserEntity implements User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

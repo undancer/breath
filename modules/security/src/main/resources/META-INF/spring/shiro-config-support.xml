@@ -12,9 +12,7 @@
         <property name="securityManager" ref="securityManager"/>
     </bean>
 
-    <bean id="clientRealm" class="com.undancer.breath.security.client.ClientRealm" init-method="init">
-        <property name="credentialsMatcher" ref="passwordMatcher"/>
-    </bean>
+    <bean id="clientRealm" class="com.undancer.breath.security.client.ClientRealm" init-method="init"/>
 
     <bean id="passwordMatcher" class="org.apache.shiro.authc.credential.PasswordMatcher">
         <property name="passwordService" ref="passwordService"/>

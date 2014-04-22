@@ -1,10 +1,10 @@
 package com.undancer.breath.samples.showcase.security.service.impl;
 
 import com.google.common.collect.Lists;
-import com.undancer.breath.samples.showcase.entity.UserEntity;
-import com.undancer.breath.samples.showcase.entity.UserJpaRepository;
-import com.undancer.breath.security.entity.User;
-import com.undancer.breath.security.service.UserService;
+import com.undancer.breath.samples.showcase.entity.User;
+import com.undancer.breath.samples.showcase.entity.jpa.UserJpaRepository;
+import com.undancer.breath.security.userdetails.UserDetails;
+import com.undancer.breath.security.userdetails.UserDetailsService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +17,7 @@ import java.util.Collection;
  */
 @Named("userService")
 @Transactional(readOnly = true)
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserDetailsService {
 
     @Inject
     UserJpaRepository userJpaRepository;
@@ -31,17 +31,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void save(User user) {
-        if (user instanceof UserEntity) {
-            userJpaRepository.save((UserEntity) user);
+    public <U extends UserDetails> void save(U user) {
+        if (user instanceof User) {
+            userJpaRepository.save((User) user);
         }
     }
 
-    public Collection<String> getRolesByUser(User user) {
+    public <U extends UserDetails> Collection<String> getRolesByUser(U user) {
         return Lists.newArrayList();
     }
 
-    public Collection<String> getPermsByUser(User user) {
+    public <U extends UserDetails> Collection<String> getPermsByUser(U user) {
         return Lists.newArrayList();
     }
 }
