@@ -29,13 +29,19 @@
         <maven.tomcat.uriEncoding>${project.build.sourceEncoding}</maven.tomcat.uriEncoding>
         <gmaven.version>1.5</gmaven.version>
         <spring.version>4.0.3.RELEASE</spring.version>
+        <spring.data.jpa.version>1.5.1.RELEASE</spring.data.jpa.version>
+        <hibernate.version>4.3.5.Final</hibernate.version>
         <jackson.version>2.3.2</jackson.version>
         <tomcat.version>7.0.53</tomcat.version>
         <jstl.version>1.2</jstl.version>
+        <oltu.version>1.0.0</oltu.version>
         <slf4j.version>1.7.7</slf4j.version>
         <logback.version>1.1.1</logback.version>
         <junit.version>4.11</junit.version>
         <guava.version>16.0.1</guava.version>
+        <shiro.version>1.2.3</shiro.version>
+        <druid.version>1.0.4</druid.version>
+        <mysql.version>5.1.30</mysql.version>
     </properties>
 
     <modules>
@@ -62,12 +68,12 @@
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-servlet-api</artifactId>
-                <version>7.0.53</version>
+                <version>${tomcat.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-jsp-api</artifactId>
-                <version>7.0.53</version>
+                <version>${tomcat.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -110,24 +116,36 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.3.2</version>
+                <version>${jackson.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-web</artifactId>
-                <version>1.2.3</version>
+                <version>${shiro.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-spring</artifactId>
-                <version>1.2.3</version>
+                <version>${shiro.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.oltu.oauth2</groupId>
+                <artifactId>org.apache.oltu.oauth2.resourceserver</artifactId>
+                <version>${oltu.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>16.0.1</version>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.googlecode.xmemcached</groupId>
+                <artifactId>xmemcached</artifactId>
+                <version>1.4.3</version>
             </dependency>
 
             <dependency>
@@ -140,6 +158,30 @@
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
                 <version>${groovy.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>${spring.data.jpa.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
             </dependency>
 
             <dependency>
