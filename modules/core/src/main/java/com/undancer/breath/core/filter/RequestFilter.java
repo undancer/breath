@@ -50,7 +50,7 @@ public class RequestFilter extends OncePerRequestFilter {
         if (LOGGER.isDebugEnabled()) {
             if (timer != null && timer.isRunning()) {
                 timer.stop();
-                LOGGER.debug("[BREATH/CORE][{}] {} {}ms.", method, url, timer.elapsed(TimeUnit.MILLISECONDS));
+                LOGGER.debug("[BREATH/CORE][{}] {} {} ms.", method, url, timer.elapsed(TimeUnit.MILLISECONDS));
             }
         }
     }
