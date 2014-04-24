@@ -12,5 +12,5 @@ public interface UserDetails {
     public String getPassword();
 
     public void setPassword(String password);
-    
+
 }
