@@ -8,7 +8,11 @@
         <property name="memcachedClient" ref="memcachedClient"/>
     </bean>
 
-    <bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean">
+    <!--<bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean">-->
+    <!--<property name="servers" value="localhost:11211"/>-->
+    <!--</bean>-->
+
+    <bean id="memcachedClient" class="com.undancer.breath.cache.memcached.MemcachedClientFactoryBean">
         <property name="servers" value="localhost:11211"/>
     </bean>
 

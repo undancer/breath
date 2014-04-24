@@ -3,7 +3,7 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="requestFilter" class="com.undancer.breath.core.RequestFilter"/>
+    <bean id="requestFilter" class="com.undancer.breath.core.filter.RequestFilter"/>
 
     <bean id="characterEncodingFilter" class="org.springframework.web.filter.CharacterEncodingFilter"/>
 

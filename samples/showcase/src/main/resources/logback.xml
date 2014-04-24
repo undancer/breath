@@ -7,10 +7,11 @@
     </appender>
 
     <!--<logger name="org.springframework" level="INFO"/>-->
-    <!--<logger name="com.undancer.breath.core" level="DEBUG"/>-->
+    <logger name="com.undancer.breath.core.filter.RequestFilter" level="DEBUG"/>
+    <logger name="druid" level="DEBUG"/>
 
     <root>
-        <level value="DEBUG"/>
+        <level value="INFO"/>
         <appender-ref ref="CONSOLE"/>
     </root>
 

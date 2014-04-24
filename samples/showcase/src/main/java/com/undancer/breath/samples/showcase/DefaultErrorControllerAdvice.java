@@ -1,5 +1,6 @@
 package com.undancer.breath.samples.showcase;
 
+import org.apache.shiro.authz.UnauthenticatedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -14,6 +15,11 @@ public class DefaultErrorControllerAdvice {
 
         System.out.println("throwable:" + throwable);
 
+    }
+
+    @ExceptionHandler(UnauthenticatedException.class)
+    public void Unauthenticated(UnauthenticatedException exception) {
+        System.out.println("未授权的账户");
     }
 
 }
