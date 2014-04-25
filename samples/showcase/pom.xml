@@ -40,10 +40,10 @@
             <groupId>com.github.undancer</groupId>
             <artifactId>breath-json</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github.undancer</groupId>
-            <artifactId>breath-cache</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.github.undancer</groupId>-->
+        <!--<artifactId>breath-cache</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.github.undancer</groupId>
             <artifactId>breath-security</artifactId>

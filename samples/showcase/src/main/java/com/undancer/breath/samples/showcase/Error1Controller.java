@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-@RequestMapping("/error")
-public class ErrorController {
+@RequestMapping("/error1")
+public class Error1Controller {
 
     @RequestMapping(method = RequestMethod.GET)
     public void error() throws Exception {

@@ -1,6 +1,7 @@
 package com.undancer.breath.core.filter;
 
 import com.google.common.base.Stopwatch;
+import com.undancer.breath.core.util.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.NamedThreadLocal;
@@ -28,29 +29,30 @@ public class RequestFilter extends OncePerRequestFilter {
 
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 
-        Stopwatch timer = null;
-        String url = null, method = null;
-
-        if (LOGGER.isDebugEnabled()) {
-            timer = Stopwatch.createStarted();
-            StringBuffer uri = request.getRequestURL();
-            String query = request.getQueryString();
-            if (query != null && query.length() > 0) {
-                uri.append('?').append(query);
-            }
-            url = uri.toString();
-            method = request.getMethod().toUpperCase();
-        }
-
         requestHolder.set(request);
+
+        beforeRequest(request, response);
 
         chain.doFilter(request, response);
 
-        requestHolder.set(null);
+        afterRequest(request, response);
 
+        requestHolder.set(null);
+    }
+
+    private void beforeRequest(HttpServletRequest request, HttpServletResponse response) {
         if (LOGGER.isDebugEnabled()) {
+            RequestUtils.setAttribute(getClass() + ".STOPWATCH", Stopwatch.createStarted());
+        }
+    }
+
+    private void afterRequest(HttpServletRequest request, HttpServletResponse response) {
+        if (LOGGER.isDebugEnabled()) {
+            Stopwatch timer = RequestUtils.getAttribute(getClass() + ".STOPWATCH");
             if (timer != null && timer.isRunning()) {
                 timer.stop();
+                String url = RequestUtils.getUrl();
+                String method = RequestUtils.getMethod().toUpperCase();
                 LOGGER.debug("[BREATH/CORE][{}] {} {} ms.", method, url, timer.elapsed(TimeUnit.MILLISECONDS));
             }
         }
