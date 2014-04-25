@@ -54,13 +54,17 @@ public class RequestUtils implements ApplicationContextAware {
         return getRequestUri() + (getQueryString() != null ? QUERY_STRING_SEPARATOR + getQueryString() : "");
     }
 
+    public static String getMethod() {
+        return getRequest().getMethod();
+    }
+
     public static boolean isGetRequest() {
-        return "GET".equalsIgnoreCase(getRequest().getMethod());
+        return "GET".equalsIgnoreCase(getMethod());
     }
 
 
     public static boolean isPostRequest() {
-        return "POST".equalsIgnoreCase(getRequest().getMethod());
+        return "POST".equalsIgnoreCase(getMethod());
     }
 
     public static boolean isAjaxRequest() {
@@ -69,6 +73,10 @@ public class RequestUtils implements ApplicationContextAware {
 
     public static String getHeader(String name) {
         return getRequest().getHeader(name);
+    }
+
+    public static void setAttribute(String name, Object o) {
+        getRequest().setAttribute(name, o);
     }
 
     public static <T> T getAttribute(String name) {
@@ -89,6 +97,7 @@ public class RequestUtils implements ApplicationContextAware {
         }
         return uri;
     }
+
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         RequestUtils.applicationContext = applicationContext;

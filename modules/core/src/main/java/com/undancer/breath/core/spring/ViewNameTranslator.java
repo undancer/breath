@@ -1,5 +1,6 @@
 package com.undancer.breath.core.spring;
 
+import com.undancer.breath.core.ViewNotFoundException;
 import com.undancer.breath.core.util.ReflectionUtils;
 import com.undancer.breath.core.util.RequestUtils;
 import com.undancer.breath.core.util.ResourceUtils;
@@ -33,7 +34,7 @@ public class ViewNameTranslator extends DefaultRequestToViewNameTranslator {
         List<UrlBasedViewResolver> viewResolvers = ResourceUtils.getResources(UrlBasedViewResolver.class);
         for (UrlBasedViewResolver viewResolver : viewResolvers) {
             String prefix = ReflectionUtils.<String>getPrivateField(viewResolver, "prefix").replaceAll("^/", "");
-            String suffix = ReflectionUtils.getPrivateField(viewResolver, "suffix");
+            String suffix = ReflectionUtils.<String>getPrivateField(viewResolver, "suffix").trim();
 
             String viewName = findViewName(prefix, uri, suffix, false);
             if (viewName != null) {
@@ -41,7 +42,7 @@ public class ViewNameTranslator extends DefaultRequestToViewNameTranslator {
             }
         }
 
-        return super.getViewName(request);
+        throw new ViewNotFoundException();
     }
 
     public String findViewName(String prefix, String path, String suffix, boolean greedy) {
