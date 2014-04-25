@@ -42,6 +42,7 @@
         <shiro.version>1.2.3</shiro.version>
         <druid.version>1.0.4</druid.version>
         <mysql.version>5.1.30</mysql.version>
+        <metrics.version>3.0.1</metrics.version>
     </properties>
 
     <modules>
@@ -53,6 +54,7 @@
         <module>samples/jms</module>
         <module>samples/blank</module>
         <module>samples/security</module>
+        <module>modules/metrics</module>
     </modules>
 
     <dependencyManagement>
