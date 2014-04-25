@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  */
 @ControllerAdvice
 public class DefaultErrorControllerAdvice {
-
-    @ExceptionHandler(Throwable.class)
-    public void error(Throwable throwable) {
-
-        System.out.println("throwable:" + throwable);
-
-    }
+//
+//    @ExceptionHandler(Throwable.class)
+//    public void error(Throwable throwable) {
+//
+//        System.out.println("throwable:" + throwable);
+//
+//    }
 
     @ExceptionHandler(UnauthenticatedException.class)
     public void Unauthenticated(UnauthenticatedException exception) {
