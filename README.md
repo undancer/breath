@@ -1,3 +1,27 @@
 breath
 ======
 私人的快速起步模块
+
+```
+<dependency>
+    <groupId>com.github.undancer</groupId>
+    <artifactId>breath-core</artifactId>
+    <version>0.0.1</version>
+</dependency>
+```    
+```
+<project>
+    <repositories>
+        <repository>
+            <id>undancer</id>
+            <url>http://undancer.com/breath/repo/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>
+```
