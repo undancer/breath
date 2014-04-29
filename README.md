@@ -6,7 +6,7 @@ breath
 <dependency>
     <groupId>com.github.undancer</groupId>
     <artifactId>breath-core</artifactId>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
 </dependency>
 ```    
 ```
