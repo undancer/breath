@@ -5,14 +5,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
 
-    <bean id="velocityEngine"
-          class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
         <property name="configLocation" value="classpath:META-INF/velocity.properties"/>
         <property name="resourceLoaderPath" value="classpath:"/>
     </bean>
 
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="velocityEngine" ref="velocityEngine"/>
+        <property name="configLocation" value="classpath:META-INF/velocity.properties"/>
+        <property name="resourceLoaderPath" value="classpath:"/>
     </bean>
 
     <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver" p:order="65535">
