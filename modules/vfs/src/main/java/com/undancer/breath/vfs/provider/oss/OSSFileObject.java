@@ -1,6 +1,6 @@
 package com.undancer.breath.vfs.provider.oss;
 
-import com.aliyun.openservices.oss.OSSClient;
+import com.aliyun.openservices.oss.OSS;
 import com.aliyun.openservices.oss.OSSException;
 import com.aliyun.openservices.oss.model.*;
 import com.google.common.collect.Sets;
@@ -30,7 +30,7 @@ public class OSSFileObject extends AbstractFileObject {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(OSSFileObject.class);
 
-    private OSSClient client;
+    private OSS client;
     private String bucketName;
 
     private FileType fileType;
@@ -43,7 +43,7 @@ public class OSSFileObject extends AbstractFileObject {
 
     private File cacheFile;
 
-    protected OSSFileObject(OSSClient client, String bucketName, AbstractFileName name, OSSFileSystem fs) {
+    protected OSSFileObject(OSS client, String bucketName, AbstractFileName name, OSSFileSystem fs) {
         super(name, fs);
         this.client = client;
         this.bucketName = bucketName;
@@ -103,7 +103,7 @@ public class OSSFileObject extends AbstractFileObject {
             }
             marker = objectListing.getNextMarker();
         } while (marker != null);
-        return children.toArray(new String[]{});
+        return children.toArray(new String[0]);
     }
 
     protected long doGetContentSize() throws Exception {
