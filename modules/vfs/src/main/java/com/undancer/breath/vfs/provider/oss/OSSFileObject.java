@@ -50,7 +50,6 @@ public class OSSFileObject extends AbstractFileObject {
     }
 
     protected FileType doGetType() throws Exception {
-        System.out.println(this + " - doGetType");
         if (fileType == null) {
             try {
                 this.client.listObjects(new ListObjectsRequest(bucketName, getPrefix(getKey()), null, delimiter, 1));
@@ -83,7 +82,6 @@ public class OSSFileObject extends AbstractFileObject {
     }
 
     protected String[] doListChildren() throws Exception {
-        System.out.println(this + " - doListChildren");
         Set<String> children = Sets.newLinkedHashSet();
         String prefix = getPrefix(getKey());
         String marker = null;
