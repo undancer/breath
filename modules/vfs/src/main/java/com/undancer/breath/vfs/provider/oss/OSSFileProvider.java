@@ -35,7 +35,7 @@ public class OSSFileProvider extends AbstractOriginatingFileProvider {
 
     public OSSFileProvider() {
         super();
-        setFileNameParser(OSSFilenameParser.getInstance());
+        setFileNameParser(OSSFileNameParser.getInstance());
     }
 
     public static FileSystemOptions getDefaultOptions() {
