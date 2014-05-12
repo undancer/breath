@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<providers>
+    <!-- see http://commons.apache.org/proper/commons-vfs/api.html -->
+    <provider class-name="com.undancer.breath.vfs.provider.oss.OSSFileProvider">
+        <scheme name="oss"/>
+    </provider>
+</providers>
