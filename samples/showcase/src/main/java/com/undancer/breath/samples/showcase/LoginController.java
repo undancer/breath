@@ -1,8 +1,7 @@
 package com.undancer.breath.samples.showcase;
 
-import com.undancer.breath.samples.showcase.entity.jpa.UserJpaRepository;
-import com.undancer.breath.security.userdetails.UserDetails;
-import com.undancer.breath.security.userdetails.UserDetailsService;
+import com.undancer.breath.samples.showcase.entity.User;
+import com.undancer.breath.samples.showcase.security.service.impl.UserServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.credential.PasswordService;
 import org.springframework.stereotype.Controller;
@@ -23,15 +22,12 @@ public class LoginController {
     PasswordService passwordService;
 
     @Inject
-    UserDetailsService userDetailsService;
-
-    @Inject
-    UserJpaRepository userJpaRepository;
+    UserServiceImpl userService;
 
     @RequestMapping(method = RequestMethod.POST)
     public void post(@RequestParam String username, @RequestParam String password) {
 
-        UserDetails user = userDetailsService.loadUserByUsername(username);
+        User user = userService.loadUserByUsername(username);
 
         if (user != null) {
             String plaintextPassword = user.getPassword();
@@ -40,7 +36,7 @@ public class LoginController {
 
                 user.setPassword(encryptPassword);
 
-                userDetailsService.save(user);
+                userService.save(user);
 
                 if (passwordService.passwordsMatch(password, encryptPassword)) {
                     System.out.println("密码通过");

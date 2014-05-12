@@ -6,16 +6,13 @@ import java.util.Collection;
 /**
  * Created by undancer on 14-4-21.
  */
-public interface UserDetailsService {
+public interface UserDetailsService<U extends UserDetails> {
 
-    public <U extends UserDetails> U loadUserByAccessToken(String accessToken);
+    public U loadUserByAccessToken(String accessToken);
 
-    public <U extends UserDetails> U loadUserByUsername(String username);
+    public U loadUserByUsername(String username);
 
-    public <U extends UserDetails> Collection<String> getRolesByUser(U user);
+    public Collection<String> getRolesByUser(U user);
 
-    public <U extends UserDetails> Collection<String> getPermsByUser(U user);
-
-    public <U extends UserDetails> void save(U user);
-
+    public Collection<String> getPermsByUser(U user);
 }

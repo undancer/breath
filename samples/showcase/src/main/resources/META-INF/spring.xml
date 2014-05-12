@@ -7,6 +7,7 @@
     <import resource="classpath:META-INF/spring/data-config.xml"/>
     <import resource="classpath:META-INF/spring/jpa-config.xml"/>
     <import resource="classpath:META-INF/spring/shiro-config.xml"/>
+    <import resource="classpath:META-INF/spring/cxf-config.xml"/>
 
     <context:annotation-config/>
     <context:component-scan base-package="com.undancer.breath.samples.showcase"/>

@@ -53,6 +53,7 @@
         <module>samples/jms</module>
         <module>samples/blank</module>
         <module>samples/security</module>
+        <module>modules/ws</module>
     </modules>
 
     <dependencyManagement>
@@ -196,6 +197,17 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-transports-http</artifactId>
+                <version>2.7.11</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-frontend-jaxws</artifactId>
+                <version>2.7.11</version>
             </dependency>
 
             <dependency>

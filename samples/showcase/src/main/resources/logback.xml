@@ -11,8 +11,8 @@
     <logger name="druid" level="DEBUG"/>
 
     <root>
-        <!--<level value="TRACE"/>-->
-        <level value="INFO"/>
+        <level value="TRACE"/>
+        <!--<level value="INFO"/>-->
         <appender-ref ref="CONSOLE"/>
     </root>
 
