@@ -52,16 +52,27 @@ public class OSSFileObject extends AbstractFileObject {
     protected FileType doGetType() throws Exception {
         if (fileType == null) {
             try {
-                this.client.listObjects(new ListObjectsRequest(bucketName, getPrefix(getKey()), null, delimiter, 1));
-                try {
-                    this.client.getObjectMetadata(bucketName, getKey());
-                    this.fileType = FileType.FILE;
-                } catch (OSSException e) {
+                ObjectListing listing = this.client.listObjects(new ListObjectsRequest(bucketName, getPrefix(getKey()), null,
+                        delimiter, 1));
+                if (listing.getCommonPrefixes().size() > 0 || listing.getObjectSummaries().size() > 0) {
                     fileType = FileType.FOLDER;
                 }
             } catch (OSSException e) {
                 this.fileType = FileType.IMAGINARY;
             }
+        }
+        if (fileType == null) {
+            try {
+                ObjectMetadata metadata = this.client.getObjectMetadata(bucketName, getKey());
+                if (metadata != null) {
+                    this.fileType = FileType.FILE;
+                }
+            } catch (OSSException e) {
+                this.fileType = FileType.IMAGINARY;
+            }
+        }
+        if (fileType == null) {
+            this.fileType = FileType.IMAGINARY;
         }
         return fileType;
     }
@@ -109,6 +120,12 @@ public class OSSFileObject extends AbstractFileObject {
     protected long doGetContentSize() throws Exception {
         downloadOnce();
         return this.object.getObjectMetadata().getContentLength();
+    }
+
+    @Override
+    protected long doGetLastModifiedTime() throws Exception {
+        downloadOnce();
+        return this.object.getObjectMetadata().getLastModified().getTime();
     }
 
     protected void downloadOnce() throws FileSystemException {

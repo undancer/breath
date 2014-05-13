@@ -54,7 +54,7 @@ class OSSClientWrapper implements OSS {
                 UserAuthenticatorUtils.cleanup(authData);
             }
         }
-        return client;
+        return this.client;
     }
 
     @Override
