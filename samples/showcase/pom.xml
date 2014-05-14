@@ -49,6 +49,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.github.undancer</groupId>
+            <artifactId>breath-slackbot</artifactId>
+            <version>0.2-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
             <version>1.2.3</version>

@@ -54,6 +54,7 @@
         <module>samples/blank</module>
         <module>samples/security</module>
         <module>modules/vfs</module>
+        <module>modules/slackbot</module>
     </modules>
 
     <dependencyManagement>
