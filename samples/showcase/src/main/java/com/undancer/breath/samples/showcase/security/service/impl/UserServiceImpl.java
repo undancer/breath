@@ -42,6 +42,6 @@ public class UserServiceImpl implements UserDetailsService {
     }
 
     public <U extends UserDetails> Collection<String> getPermsByUser(U user) {
-        return Lists.newArrayList();
+        return Lists.newArrayList("user", "teacher");
     }
 }
