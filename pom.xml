@@ -5,14 +5,14 @@
 
     <groupId>com.github.undancer</groupId>
     <artifactId>breath</artifactId>
-    <version>0.2</version>
+    <version>0.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <scm>
         <url>https://github.com/undancer/breath</url>
         <connection>scm:git:https://github.com/undancer/breath.git</connection>
         <developerConnection>scm:git:https://github.com/undancer/breath.git</developerConnection>
-        <tag>breath-0.2</tag>
+        <tag>0.2</tag>
     </scm>
 
     <properties>
@@ -303,6 +303,11 @@
                 <artifactId>breath-cache</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.undancer</groupId>
+                <artifactId>breath-slackbot</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -386,13 +391,6 @@
             <!--</plugin>-->
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>local-repo</id>
-            <url>file:///Users/undancer/.m2/repository</url>
-        </repository>
-    </distributionManagement>
 
     <repositories>
         <repository>
