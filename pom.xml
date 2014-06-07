@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.undancer</groupId>
     <artifactId>breath</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
     <packaging>pom</packaging>
 
     <scm>
         <url>https://github.com/undancer/breath</url>
         <connection>scm:git:https://github.com/undancer/breath.git</connection>
         <developerConnection>scm:git:https://github.com/undancer/breath.git</developerConnection>
-        <tag>0.2</tag>
+        <tag>breath-0.2</tag>
     </scm>
 
     <properties>
@@ -325,7 +324,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <source/>
+                    <source />
                     <providerSelection>2.0</providerSelection>
                 </configuration>
                 <executions>
