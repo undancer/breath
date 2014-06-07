@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  */
 @ControllerAdvice
 public class DefaultErrorControllerAdvice {
-//
+
 //    @ExceptionHandler(Throwable.class)
 //    public void error(Throwable throwable) {
+//        try {
+//            BotUtils.setUrl("https://boxfish.slack.com/services/hooks/incoming-webhook?token=gWL5P45NRwVXyrozkosr2urj");
+//            String username = String.format("%s@%s", "粗线鸟", Inet4Address.getLocalHost().getHostAddress());
+//            BotUtils.say("#bebase", ":ghost:", username, throwable);
+//        } catch (UnknownHostException e) {
 //
-//        System.out.println("throwable:" + throwable);
-//
+//        }
+//        throwable.printStackTrace();
 //    }
 
     @ExceptionHandler(UnauthenticatedException.class)

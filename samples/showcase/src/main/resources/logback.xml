@@ -2,12 +2,13 @@
 <configuration>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+            <pattern>%date [%thread] %-5level %logger{35} - %msg %n</pattern>
         </encoder>
     </appender>
 
     <!--<logger name="org.springframework" level="INFO"/>-->
-    <logger name="com.undancer.breath.core.filter.RequestFilter" level="DEBUG"/>
+    <!--<logger name="com.undancer.breath.core.filter.RequestFilter" level="DEBUG"/>-->
+    <logger name="com.undancer.breath" level="DEBUG"/>
     <logger name="druid" level="DEBUG"/>
 
     <root>
