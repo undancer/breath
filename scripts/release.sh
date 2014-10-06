@@ -1,2 +1,3 @@
 #!/usr/bin/env sh
-mvn release:prepare -DautoVersionSubmodules=true
+mvn release:clean
+mvn release:prepare
